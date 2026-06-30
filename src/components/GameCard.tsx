@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Game } from '../types';
 import { motion } from 'framer-motion';
 
@@ -12,7 +13,7 @@ export default function GameCard({ game }: GameCardProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <Link to={`/game/${game.slug}`}>
+    <Link href={`/game/${game.slug}`}>
       <motion.div 
         whileHover={{ y: -5 }}
         className="glass rounded-2xl overflow-hidden glow-hover h-full flex flex-col group cursor-pointer bg-white/5 dark:bg-black/20"

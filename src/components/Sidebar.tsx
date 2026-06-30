@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
 import { Menu, X, Home, Info, Mail, Shield, Moon, Sun, Monitor, Globe, Heart, LogIn, LogOut, User, FileText, Trophy, Folder } from 'lucide-react';
@@ -96,21 +97,22 @@ export default function Sidebar({ onFilterChange, currentCategory }: SidebarProp
             </div>
 
             <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
-              {navLinks.map((link) => (
-                <NavLink
+              {navLinks.map((link) => {
+                const isActive = typeof window !== 'undefined' && window.location.pathname === link.path;
+                return (
+                <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={({ isActive }) => 
-                    `flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 ${
-                      isActive ? 'bg-cyan-500 text-white shadow-[0_0_15px_rgba(0,255,255,0.3)]' : 'hover:bg-black/5 dark:hover:bg-white/10'
-                    }`
-                  }
+                  className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 ${
+                    isActive ? 'bg-cyan-500 text-white shadow-[0_0_15px_rgba(0,255,255,0.3)]' : 'hover:bg-black/5 dark:hover:bg-white/10'
+                  }`}
                 >
                   {link.icon}
                   <span className="font-medium">{t(link.name)}</span>
-                </NavLink>
-              ))}
+                </Link>
+                );
+              })}
 
               <button
                 onClick={handleRequestGame}
@@ -140,14 +142,14 @@ export default function Sidebar({ onFilterChange, currentCategory }: SidebarProp
                   ) : (
                     <>
                       <Link
-                        to="/login"
+                        href="/login"
                         onClick={() => setIsOpen(false)}
                         className="w-full flex justify-center px-4 py-2 rounded-xl text-sm font-bold bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white"
                       >
                         Login
                       </Link>
                       <Link
-                        to="/login"
+                        href="/login"
                         onClick={() => setIsOpen(false)}
                         className="w-full flex justify-center px-4 py-2 rounded-xl text-sm font-bold bg-cyan-500 shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:bg-cyan-400 transition-colors text-white"
                       >

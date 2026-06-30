@@ -1,10 +1,11 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Edit2, Trash2, Heart, MessageSquare } from 'lucide-react';
 import GlassModal from './GlassModal';
 import GlassSelect from './GlassSelect';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface Comment {
   id: string;
@@ -223,7 +224,7 @@ export default function CommentBox({ gameId, gameSlug }: { gameId: string, gameS
           <MessageSquare size={48} className="text-gray-500 mb-4" />
           <p className="text-gray-400 mb-4">Join the discussion with other gamers.</p>
           <Link
-            to="/login"
+            href="/login"
             className="px-8 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-cyan-500 font-bold transition-all shadow-[0_0_15px_rgba(0,255,255,0.1)] glow-hover"
           >
             Login to Comment
@@ -236,7 +237,7 @@ export default function CommentBox({ gameId, gameSlug }: { gameId: string, gameS
           <div key={comment.id} className="glass p-5 rounded-2xl bg-white/5 border border-white/10 transition-all hover:bg-white/10">
             <div className="flex justify-between items-start mb-2">
               <div className="flex items-center space-x-3">
-                <Link to={`/u/${comment.user_email?.split('@')[0]}`} className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
+                <Link href={`/u/${comment.user_email?.split('@')[0]}`} className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
                   {comment.user_email?.split('@')[0]}
                 </Link>
                 <span className="text-xs text-gray-500 font-medium">
