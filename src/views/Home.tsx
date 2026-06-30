@@ -129,7 +129,7 @@ export default function Home({ currentCategory }: HomeProps) {
     <div className="space-y-8 animate-in fade-in duration-700">
       <header className="text-center pt-8 md:pt-12">
         <h1 className="text-4xl md:text-6xl font-black tracking-widest glow-text mb-4">
-          GAME STUDIO HUB IS LIVE
+          GAME STUDIO
         </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto px-4">
           {t('A hub for PC, Android, PlayStation, PPSSPP, iOS game repacks.')}

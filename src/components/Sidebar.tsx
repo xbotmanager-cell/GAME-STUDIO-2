@@ -80,39 +80,32 @@ export default function Sidebar({ onFilterChange, currentCategory }: SidebarProp
 
       {/* Desktop Sidebar (Always open) & Mobile Sidebar */}
       <AnimatePresence>
-        {(isOpen || window.innerWidth >= 768) && (
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-            className={`fixed inset-y-0 left-0 z-40 w-64 glass-dark text-black dark:text-white flex flex-col 
-              ${isOpen ? 'block' : 'hidden md:flex'}`}
-          >
-            <div className="p-6 flex items-center justify-between">
-              <h1 className="text-2xl font-black tracking-widest glow-text">GAME STUDIO</h1>
-              <button onClick={toggleSidebar} className="md:hidden">
-                <X size={24} />
-              </button>
-            </div>
+        <motion.div
+          className={`fixed inset-y-0 left-0 z-40 w-64 glass-dark text-black dark:text-white flex flex-col md:translate-x-0 transition-transform duration-300
+            ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+        >
+          <div className="p-6 flex items-center justify-between">
+            <h1 className="text-2xl font-black tracking-widest glow-text">GAME STUDIO</h1>
+            <button onClick={toggleSidebar} className="md:hidden">
+              <X size={24} />
+            </button>
+          </div>
 
-            <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
-              {navLinks.map((link) => {
-                const isActive = typeof window !== 'undefined' && window.location.pathname === link.path;
-                return (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 ${
-                    isActive ? 'bg-cyan-500 text-white shadow-[0_0_15px_rgba(0,255,255,0.3)]' : 'hover:bg-black/5 dark:hover:bg-white/10'
-                  }`}
-                >
-                  {link.icon}
-                  <span className="font-medium">{t(link.name)}</span>
-                </Link>
-                );
-              })}
+          <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
+            {navLinks.map((link) => {
+              // Using pathname hook is better but to avoid importing, simple fallback:
+              return (
+              <Link
+                key={link.path}
+                href={link.path}
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10`}
+              >
+                {link.icon}
+                <span className="font-medium">{t(link.name)}</span>
+              </Link>
+              );
+            })}
 
               <button
                 onClick={handleRequestGame}
@@ -190,7 +183,7 @@ export default function Sidebar({ onFilterChange, currentCategory }: SidebarProp
                   onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'sw' : 'en')}
                   className="px-3 py-1 rounded-md bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-xs font-bold transition-colors"
                 >
-                  {i18n.language.toUpperCase()}
+                  {i18n.language?.toUpperCase() || 'EN'}
                 </button>
               </div>
               
