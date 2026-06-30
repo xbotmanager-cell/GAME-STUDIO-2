@@ -8,7 +8,8 @@ import { Folder, ArrowLeft, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Collection() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug;
   const [collection, setCollection] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

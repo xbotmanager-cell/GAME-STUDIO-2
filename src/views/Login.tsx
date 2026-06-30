@@ -33,7 +33,7 @@ export default function Login() {
           });
 
           if (signUpError) {
-            setMaintenance(true);
+            toast.error(signUpError.message);
             setLoading(false);
             return;
           } else {
@@ -49,7 +49,7 @@ export default function Login() {
             }
           }
         } else {
-          setMaintenance(true);
+          toast.error(signInError.message);
           setLoading(false);
           return;
         }
@@ -66,8 +66,8 @@ export default function Login() {
         }
         router.push('/');
       }
-    } catch (err) {
-      setMaintenance(true);
+    } catch (err: any) {
+      toast.error(err.message || 'An error occurred');
     }
     setLoading(false);
   };
@@ -82,13 +82,13 @@ export default function Login() {
       });
       if (error) {
         if (error.status === 404 || error.message?.includes('not enabled') || error.message?.includes('Unsupported provider') || error.message?.includes('validation_failed') || error.message?.includes('FetchError') || error.message?.includes('Failed to fetch')) {
-          setMaintenance(true);
+          toast.error("OAuth Provider not properly configured. " + error.message);
           return;
         }
         toast.error(error.message);
       }
-    } catch (err) {
-      setMaintenance(true);
+    } catch (err: any) {
+      toast.error(err.message || 'An error occurred');
     }
   };
 
@@ -108,7 +108,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="glass p-8 md:p-12 rounded-3xl bg-white/5 dark:bg-black/20 border border-white/10 w-full max-w-md animate-in fade-in zoom-in duration-500 shadow-[0_0_50px_rgba(0,255,255,0.1)]">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-black tracking-widest text-cyan-500 glow-text mb-2">GAMES STUDIO</h1>
+          <h1 className="text-3xl font-black tracking-widest text-cyan-500 glow-text mb-2">GAME STUDIO</h1>
           <p className="text-gray-500 dark:text-gray-400">Welcome back, gamer</p>
         </div>
 

@@ -18,5 +18,5 @@
 }
 
 body {
-  @apply bg-black text-white;
+  @apply bg-gray-50 text-gray-900 dark:bg-black dark:text-white transition-colors duration-300;
 }

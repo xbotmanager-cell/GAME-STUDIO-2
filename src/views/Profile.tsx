@@ -9,7 +9,8 @@ import { Heart, Star, MessageSquare, Trash2, Edit2, Shield, UserPlus, Check } fr
 import { toast } from 'sonner';
 
 export default function Profile() {
-  const { username } = useParams();
+  const params = useParams();
+  const username = params?.username;
   const [activeTab, setActiveTab] = useState('wishlist');
   const [wishlist, setWishlist] = useState<any[]>([]);
   const [rated, setRated] = useState<any[]>([]);

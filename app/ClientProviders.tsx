@@ -10,7 +10,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="min-h-screen bg-black text-white transition-colors duration-300">
+      <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-black dark:text-white transition-colors duration-300">
         <Sidebar onFilterChange={setCurrentCategory} currentCategory={currentCategory} />
         
         <main className="md:ml-64 min-h-screen relative overflow-hidden">

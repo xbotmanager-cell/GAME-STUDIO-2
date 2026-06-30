@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
 import { Menu, X, Home, Info, Mail, Shield, Moon, Sun, Monitor, Globe, Heart, LogIn, LogOut, User, FileText, Trophy, Folder } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { supabase } from '../lib/supabase';
 
 interface SidebarProps {

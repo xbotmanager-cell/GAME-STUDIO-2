@@ -6,7 +6,8 @@ import { supabase } from '../lib/supabase';
 import { ArrowLeft } from 'lucide-react';
 
 export default function BlogPost() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug;
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

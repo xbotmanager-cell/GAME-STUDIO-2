@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '../lib/supabase';
 import { Game } from '../types';
 import { ArrowLeft, Download, Info, CheckCircle, Image as ImageIcon, Heart, Star, Eye, Share2 } from 'lucide-react';
@@ -12,7 +12,8 @@ import CommentBox from '../components/CommentBox';
 import SimilarGames from '../components/SimilarGames';
 
 export default function GamePage() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug;
   const router = useRouter();
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
